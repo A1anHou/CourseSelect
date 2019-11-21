@@ -54,7 +54,7 @@
 在终端（MacOS或Linux）中执行以下代码
 
 ```
-$ git clone https://github.com/PENGZhaoqing/CourseSelect
+$ git clone git@github.com:A1anHou/CourseSelect.git
 $ cd CourseSelect
 $ bundle install
 $ rake db:migrate

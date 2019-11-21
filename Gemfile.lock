@@ -1,5 +1,5 @@
 GEM
-  remote: https://gems.ruby-china.org/
+  remote: https://gems.ruby-china.com/
   specs:
     actionmailer (4.2.5.2)
       actionpack (= 4.2.5.2)
@@ -95,7 +95,7 @@ GEM
       thor (>= 0.14, < 2.0)
     jquery-ui-rails (5.0.5)
       railties (>= 3.2.16)
-    json (1.8.3)
+    json (2.2.0)
     kaminari (0.16.3)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -276,4 +276,4 @@ DEPENDENCIES
   will_paginate (~> 3.1.6)
 
 BUNDLED WITH
-   1.14.6
+   1.17.3
