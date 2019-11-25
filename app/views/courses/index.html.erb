@@ -22,6 +22,7 @@
               <th>课程编号</th>
               <th>课程名称</th>
               <th>课时/学分</th>
+              <th>限选/已选</th>
               <th>考试方式</th>
               <th>主讲教师</th>
             </tr>
@@ -33,6 +34,7 @@
                   <td><%= course.course_code %></td>
                   <td><%= course.name %></td>
                   <td><%= course.credit %></td>
+                  <td><%= course.limit_num %>/<%= course.student_num %></td>
                   <td><%= course.exam_type %></td>
                   <td><%= course.teacher.name %></td>
 

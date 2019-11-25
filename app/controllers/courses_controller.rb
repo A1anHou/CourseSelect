@@ -72,14 +72,20 @@ class CoursesController < ApplicationController
 
   def select
     @course=Course.find_by_id(params[:id])
-    current_user.courses<<@course
-    flash={:suceess => "成功选择课程: #{@course.name}"}
+    if(@course.student_num >= @course.limit_num)
+      flash={:warning => "选课失败: 限选#{@course.limit_num}/已选#{@course.student_num}"}
+    else
+      current_user.courses<<@course
+      @course.update_attributes(:student_num => @course.student_num+1)
+      flash={:suceess => "成功选择课程: #{@course.name}"}
+    end
     redirect_to courses_path, flash: flash
   end
 
   def quit
     @course=Course.find_by_id(params[:id])
     current_user.courses.delete(@course)
+    @course.update_attributes(:student_num => @course.student_num-1)
     flash={:success => "成功退选课程: #{@course.name}"}
     redirect_to courses_path, flash: flash
   end
