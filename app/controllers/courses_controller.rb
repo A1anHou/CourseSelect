@@ -75,6 +75,11 @@ class CoursesController < ApplicationController
     if(@course.student_num >= @course.limit_num)
       flash={:warning => "选课失败: 限选#{@course.limit_num}/已选#{@course.student_num}"}
     else
+      schedule = Array.new(7){ Array.new(11, 0)}
+      courses=current_user.courses
+      courses.each do |course|
+        #待定
+      end
       current_user.courses<<@course
       @course.update_attributes(:student_num => @course.student_num+1)
       flash={:suceess => "成功选择课程: #{@course.name}"}
@@ -95,7 +100,14 @@ class CoursesController < ApplicationController
 
   def index
     @course=current_user.teaching_courses.paginate(page: params[:page], per_page: 4) if teacher_logged_in?
-    @course=current_user.courses.paginate(page: params[:page], per_page: 4) if student_logged_in?
+    if student_logged_in?
+      @course=current_user.courses.paginate(page: params[:page], per_page: 4)
+      @sum = 0
+      courses = current_user.courses
+      courses.each do |c|
+        @sum+=c.credit.split('/')[1].to_i
+      end
+    end
   end
 
 

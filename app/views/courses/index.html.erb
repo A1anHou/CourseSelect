@@ -11,7 +11,7 @@
         <div class="panel-heading">
           <% if teacher_logged_in? %><h3 class="panel-title">授课列表</h3>
           <% end %>
-          <% if student_logged_in? %><h3 class="panel-title">已选课程</h3>
+          <% if student_logged_in? %><h3 class="panel-title">已选课程（已选：<%=@sum  %>/共需：30学分）</h3>
           <% end %>
         </div>
 

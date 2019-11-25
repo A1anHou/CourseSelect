@@ -9,5 +9,4 @@ class Course < ActiveRecord::Base
             :class_room, :credit, :teaching_type, :exam_type,
             :exam_proportion, presence: true, length: {maximum: 50}
 
-
 end
