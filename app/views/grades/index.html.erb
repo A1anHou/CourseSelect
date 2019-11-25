@@ -20,7 +20,11 @@
               <th>专业</th>
               <th>培养单位</th>
               <th>课程</th>
+              <th>平时分数(<%=100-@course.exam_proportion%>%)</th>
+              <th>考试分数(<%=@course.exam_proportion%>%)</th>
               <th>目前分数</th>
+              <th>编辑平时分数</th>
+              <th>编辑考试分数</th>
 
             </tr>
             </thead>
@@ -33,11 +37,14 @@
                   <td><%= grade.user.major %></td>
                   <td><%= grade.user.department %></td>
                   <td><%= grade.course.name %></td>
+                  <td><%= grade.normal_grade %></td>
                   <td><%= grade.grade %></td>
+                  <td><%= grade.grade.to_i*@course.exam_proportion/100.0+grade.normal_grade.to_i*(100-@course.exam_proportion)/100.0 %></td>
 
                   <% if teacher_logged_in? %>
                       <%= form_for grade, url: grade_url(id: grade.id, course_id: grade.course.id), method: :patch do |f| %>
-                          <td><%= f.text_field :grade %></td>
+                          <td><%= f.text_field :normal_grade, placeholder:"请输入平时分数" %></td>
+                          <td><%= f.text_field :grade, placeholder:"请输入考试分数" %></td>
                           <td><%= f.submit "提交", class: "btn btn-success btn-xs" %></td>
                       <% end %>
                   <% end %>
