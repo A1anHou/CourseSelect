@@ -20,11 +20,17 @@
               <th>专业</th>
               <th>培养单位</th>
               <th>课程</th>
-              <th>平时分数(<%=100-@course.exam_proportion%>%)</th>
-              <th>考试分数(<%=@course.exam_proportion%>%)</th>
-              <th>目前分数</th>
-              <th>编辑平时分数</th>
-              <th>编辑考试分数</th>
+              <% if teacher_logged_in? %>
+                <th>平时分数(<%=100-@course.exam_proportion%>%)</th>
+                <th>考试分数(<%=@course.exam_proportion%>%)</th>
+                <th>目前分数</th>
+                <th>编辑平时分数</th>
+                <th>编辑考试分数</th>
+              <% else %>
+                <th>平时分数</th>
+                <th>考试分数</th>
+                <th>目前分数</th>
+              <% end %>
 
             </tr>
             </thead>
@@ -39,7 +45,7 @@
                   <td><%= grade.course.name %></td>
                   <td><%= grade.normal_grade %></td>
                   <td><%= grade.grade %></td>
-                  <td><%= grade.grade.to_i*@course.exam_proportion/100.0+grade.normal_grade.to_i*(100-@course.exam_proportion)/100.0 %></td>
+                  <td><%= grade.grade.to_i*grade.course.exam_proportion.to_i/100.0+grade.normal_grade.to_i*(100-grade.course.exam_proportion.to_i)/100.0 %></td>
 
                   <% if teacher_logged_in? %>
                       <%= form_for grade, url: grade_url(id: grade.id, course_id: grade.course.id), method: :patch do |f| %>

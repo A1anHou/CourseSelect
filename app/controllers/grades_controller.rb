@@ -20,6 +20,7 @@ class GradesController < ApplicationController
       @grades = @course.grades.order(created_at: "desc").paginate(page: params[:page], per_page: 4)
     elsif student_logged_in?
       @grades=current_user.grades.paginate(page: params[:page], per_page: 4)
+
     else
       redirect_to root_path, flash: {:warning=>"请先登陆"}
     end
