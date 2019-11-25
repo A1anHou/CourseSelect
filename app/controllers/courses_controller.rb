@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  include CourseHelper
 
   before_action :student_logged_in, only: [:select, :quit, :list]
   before_action :teacher_logged_in, only: [:new, :create, :edit, :destroy, :update, :open, :close]#add open by qiao
@@ -14,9 +15,9 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
     if @course.save
       current_user.teaching_courses<<@course
-      redirect_to courses_path, flash: {success: "新课程申请成功"}
+      redirect_to courses_path, flash: {success: '新课程申请成功'}
     else
-      flash[:warning] = "信息填写有误,请重试"
+      flash[:warning] = '信息填写有误,请重试'
       render 'new'
     end
   end
@@ -28,9 +29,9 @@ class CoursesController < ApplicationController
   def update
     @course = Course.find_by_id(params[:id])
     if @course.update_attributes(course_params)
-      flash={:info => "更新成功"}
+      flash={:info => '更新成功'}
     else
-      flash={:warning => "更新失败"}
+      flash={:warning => '更新失败'}
     end
     redirect_to courses_path, flash: flash
   end
@@ -72,17 +73,34 @@ class CoursesController < ApplicationController
 
   def select
     @course=Course.find_by_id(params[:id])
-    if(@course.student_num >= @course.limit_num)
+    if @course.student_num >= @course.limit_num
       flash={:warning => "选课失败: 限选#{@course.limit_num}/已选#{@course.student_num}"}
     else
-      schedule = Array.new(7){ Array.new(11, 0)}
+      # schedule = Array.new(7){ Array.new(11, 0)}
+      current_course_weekday=get_weekday(@course.course_time)
       courses=current_user.courses
-      courses.each do |course|
-        #待定
+      flag=0
+      courses.each do |c|
+        course_weekday=get_weekday(c.course_time)
+        if course_weekday.to_i==current_course_weekday.to_i
+          current_course_time=get_course_time(@course.course_time)
+          course_time=get_course_time(c.course_time)
+          if current_course_time[0].to_i<=course_time[1].to_i and current_course_time[1].to_i>=course_time[0].to_i
+            course_week=get_course_week(c.course_week)
+            current_course_week=get_course_week(@course.course_week)
+            if current_course_week[0].to_i<=course_time[1].to_i and current_course_week[1].to_i>=course_week[0].to_i
+              flag=1
+              flash={:warning => "选课失败: 课程时间冲突，冲突课程#{c.name}"}
+              break
+            end
+          end
+        end
       end
-      current_user.courses<<@course
-      @course.update_attributes(:student_num => @course.student_num+1)
-      flash={:suceess => "成功选择课程: #{@course.name}"}
+      if flag==0
+        current_user.courses<<@course
+        @course.update_attributes(:student_num => @course.student_num+1)
+        flash={:success => "成功选择课程: #{@course.name}"}
+      end
     end
     redirect_to courses_path, flash: flash
   end

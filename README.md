@@ -2,6 +2,12 @@
 
 ### [中文教程1](http://blog.csdn.net/ppp8300885/article/details/52594839) [中文教程2](http://blog.csdn.net/ppp8300885/article/details/52601560) [中文教程3](http://blog.csdn.net/ppp8300885/article/details/52669749) [Wiki](https://github.com/PENGZhaoqing/CourseSelect/wiki)
 
+### 新增功能：
+
+* 处理选课冲突、控制选课人数
+* 统计当前已选总学分
+* 增加平时成绩，教师能够分配各部分成绩所占比例
+* 课程属性，授课方式，考试方式的编辑方式改为下拉菜单
 
 这个样本系统是基于国科大研究生课程 (高级软件工程) 开发的项目,目的是帮助入门者学习RoR (Ruby on Rails),
 
