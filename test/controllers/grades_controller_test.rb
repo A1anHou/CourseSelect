@@ -23,7 +23,13 @@ class GradesControllerTest < ActionController::TestCase
   test "grade update?" do
 
     grade=Grade.new
+    params={
+        :grade => {
+            :grade => 3,
+            :normal_grade => 2
+        },
+    }
+    grade.update_attributes!({:grade => params[:grade][:grade], :normal_grade => params[:grade][:normal_grade]})
     assert grade.save
-    #assert_redirected_to grades_path
    end
 end
