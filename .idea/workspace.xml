@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7b1c0f9-5303-4042-90a5-05cecbda0e94" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/courses_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/courses_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/courses/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses/_form.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/courses/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/courses/list.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses/list.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
-    </list>
+    <list default="true" id="d7b1c0f9-5303-4042-90a5-05cecbda0e94" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +192,7 @@
       <workItem from="1574508036020" duration="4563000" />
       <workItem from="1574670080870" duration="16534000" />
       <workItem from="1574690629822" duration="221000" />
-      <workItem from="1574691055324" duration="6897000" />
+      <workItem from="1574691055324" duration="7217000" />
     </task>
     <servers />
   </component>
