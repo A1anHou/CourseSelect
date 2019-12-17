@@ -29,8 +29,8 @@
             </tr>
             </thead>
             <tbody>
-
-            <% @courses.each do |course| %>
+            <%if (Course.where(:open => true)-current_user.courses).count != 0%>
+              <% @courses.each do |course| %>
                 <tr>
 
                   <td><%= course.course_code %></td>
@@ -47,6 +47,7 @@
                   <td><%= link_to "加入课程", select_course_path(course), class: 'btn-sm btn-info' %></td>
 
                 </tr>
+              <% end %>
             <% end %>
             </tbody>
           </table>
