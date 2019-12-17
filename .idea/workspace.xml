@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7b1c0f9-5303-4042-90a5-05cecbda0e94" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.generators" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.generators" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/courses/list.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/courses/list.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/courses_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/courses_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/course_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/course_helper.rb" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,6 +200,11 @@
       <workItem from="1574691055324" duration="7217000" />
       <workItem from="1576559187694" duration="443000" />
       <workItem from="1576562755016" duration="257000" />
+      <workItem from="1576563765660" duration="1577000" />
+      <workItem from="1576566360672" duration="36000" />
+      <workItem from="1576566411913" duration="1430000" />
+      <workItem from="1576567900627" duration="172000" />
+      <workItem from="1576568129678" duration="276000" />
     </task>
     <servers />
   </component>
@@ -235,6 +242,6 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/vim@Development__vim.rcov" NAME="Development: vim Coverage Results" MODIFIED="1576562895180" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="vim" />
+    <SUITE FILE_PATH="coverage/vim@Development__vim.rcov" NAME="Development: vim Coverage Results" MODIFIED="1576568368147" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="vim" />
   </component>
 </project>

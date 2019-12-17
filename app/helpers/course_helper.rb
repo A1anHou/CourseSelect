@@ -31,7 +31,17 @@ module CourseHelper
   end
 
   def get_course_week(course_week)
-    return delete_chinese(course_week).split('-')
+    course_week = delete_chinese(course_week)
+    str_array = course_week.split(',')
+    result = Array.new(20, 0)
+    str_array.each do |a|
+      a_temp = a.split('-')
+      for i in (a_temp[0].to_i-1)...a_temp[1].to_i
+        result[i] = 1
+      end
+    end
+    #return delete_chinese(course_week).split('-')
+    return result
   end
 
   def get_weekday(course_time)

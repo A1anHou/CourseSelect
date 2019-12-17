@@ -82,16 +82,21 @@ class CoursesController < ApplicationController
       flag=0
       courses.each do |c|
         course_weekday=get_weekday(c.course_time)
+        #如果周几相同
         if course_weekday.to_i==current_course_weekday.to_i
           current_course_time=get_course_time(@course.course_time)
           course_time=get_course_time(c.course_time)
+          #如果节数冲突
           if current_course_time[0].to_i<=course_time[1].to_i and current_course_time[1].to_i>=course_time[0].to_i
             course_week=get_course_week(c.course_week)
             current_course_week=get_course_week(@course.course_week)
-            if current_course_week[0].to_i<=course_time[1].to_i and current_course_week[1].to_i>=course_week[0].to_i
-              flag=1
-              flash={:warning => "选课失败: 课程时间冲突，冲突课程#{c.name}"}
-              break
+            #如果周数冲突
+            for i in 0...20
+              if current_course_week[i] == 1 and course_week[i] == 1
+                flag=1
+                flash={:warning => "选课失败: 课程时间冲突，冲突课程#{c.name}"}
+                break
+              end
             end
           end
         end
