@@ -72,40 +72,15 @@ class CoursesController < ApplicationController
   end
 
   def select
-    @course=Course.find_by_id(params[:id])
-    if @course.student_num >= @course.limit_num
-      flash={:warning => "选课失败: 限选#{@course.limit_num}/已选#{@course.student_num}"}
+    @course = Course.find_by_id(params[:id])
+    courses = current_user.courses
+    result = if_conflict(@course,courses)
+    if result == 1
+      current_user.courses<<@course
+      @course.update_attributes(:student_num => @course.student_num+1)
+      flash={:success => "成功选择课程: #{@course.name}"}
     else
-      # schedule = Array.new(7){ Array.new(11, 0)}
-      current_course_weekday=get_weekday(@course.course_time)
-      courses=current_user.courses
-      flag=0
-      courses.each do |c|
-        course_weekday=get_weekday(c.course_time)
-        #如果周几相同
-        if course_weekday.to_i==current_course_weekday.to_i
-          current_course_time=get_course_time(@course.course_time)
-          course_time=get_course_time(c.course_time)
-          #如果节数冲突
-          if current_course_time[0].to_i<=course_time[1].to_i and current_course_time[1].to_i>=course_time[0].to_i
-            course_week=get_course_week(c.course_week)
-            current_course_week=get_course_week(@course.course_week)
-            #如果周数冲突
-            for i in 0...20
-              if current_course_week[i] == 1 and course_week[i] == 1
-                flag=1
-                flash={:warning => "选课失败: 课程时间冲突，冲突课程#{c.name}"}
-                break
-              end
-            end
-          end
-        end
-      end
-      if flag==0
-        current_user.courses<<@course
-        @course.update_attributes(:student_num => @course.student_num+1)
-        flash={:success => "成功选择课程: #{@course.name}"}
-      end
+      flash={:warning => result}
     end
     redirect_to courses_path, flash: flash
   end
@@ -125,11 +100,8 @@ class CoursesController < ApplicationController
     @course=current_user.teaching_courses.paginate(page: params[:page], per_page: 4) if teacher_logged_in?
     if student_logged_in?
       @course=current_user.courses.paginate(page: params[:page], per_page: 4)
-      @sum = 0
       courses = current_user.courses
-      courses.each do |c|
-        @sum+=c.credit.split('/')[1].to_i
-      end
+      @sum = sum_credit(courses)
     end
   end
 
